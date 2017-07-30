@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include Templates/head.ejs%>
+</head>
+
+<body>
+
+<br />
+
+<!-- Insert Body here -->
+<div class="container">
+
+		<div class="col-sm-6 col-sm-offset-3">
+		
+			<div align="center">
+				<h1>Apply to</h1>
+				<h2><%= opportunity.jobTitle %> at <%= opportunity.company %></h2>
+			</div>
+		
+			<!-- show any messages that come back with authentication -->
+			<% if (message.length > 0) { %>
+				<div class="alert alert-danger"><%- message %></div>
+			<% } %>
+		
+			<!-- LOGIN FORM -->
+			<form id="applyToOpp" action="/applyToOpp" method="post" encType="multipart/form-data">
+				<input type="hidden" name="oppCode" value="<%= opportunity.oppCode %>">
+				<input type="hidden" name="jobTitle" value="<%= opportunity.jobTitle %>">
+				<input type="hidden" name="company" value="<%= opportunity.company %>">
+				<div class="form-buttons">
+					<button type="submit" class="btn btn-warning btn-lg">Apply</button>
+				</div>
+				<div class="form-group">
+					<label>Applicant`s Name</label>
+					<input type="text" class="form-control" name="applicantsName">
+				</div>
+				<div class="form-group">
+					<label>Email Address</label>
+					<input type="text" class="form-control" name="email">
+				</div>
+				<div class="form-group">
+					<label>Nationality</label>
+					<input type="text" class="form-control" name="nationality">
+				</div>
+
+				<div class="form-group text-center">
+					<label class="btn btn-info btn-lg" for="appCurriculum">
+          					<span class="glyphicon glyphicon-upload"></span>
+          					<p>Upload CV (.pdf)</p>
+						    <input id="appCurriculum" type="file" style="display:none" name="appCurriculum"
+						    	onchange="$('#upload-appCurriculum').val(this.files[0].name)">
+					</label>
+					<input type="text" class="form-control" id="upload-appCurriculum" name="appCurriculumText" readonly="readonly">	
+				</div>
+			</form>
+		
+		</div>
+
+</div><!-- /.container -->
+</body>
+</html>
+
+<script>
+$(document).ready(function(){	
+	$('#applyToOpp').validate({ // initialize the plugin
+        rules: {
+        	applicantsName: {
+                required: true
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            nationality: {
+                required: true
+            },
+            appCurriculumText: {
+                required: true,
+                extension: "pdf"
+            },
+            appCurriculum: {
+            	filesize: 1
+            }
+        },
+        errorElement: "em",
+		errorPlacement: function ( error, element ) {
+			// Add the `help-block` class to the error element
+			error.addClass( "help-block" );
+
+			if ( element.prop( "type" ) === "checkbox" ) {
+				error.insertAfter( element.parent( "label" ) );
+			} else {
+				error.insertAfter( element );
+			}
+		},
+		highlight: function ( element, errorClass, validClass ) {
+			$( element ).parents( ".col-sm-6" ).addClass( "has-error" ).removeClass( "has-success" );
+		},
+		unhighlight: function (element, errorClass, validClass) {
+			$( element ).parents( ".col-sm-6" ).addClass( "has-success" ).removeClass( "has-error" );
+		}
+    });
+});
+</script>

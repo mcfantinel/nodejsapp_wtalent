@@ -1,0 +1,99 @@
+<div class="col-sm-12">
+<input type="hidden" id="oppCode" value="<%= opportunity.code %>">
+
+	<div align="center">
+		<h1><%= opportunity.jobTitle %></h1>
+		<h2><%= opportunity.company %></h2>
+		<h4><%= opportunity.jobLocation %></h4>
+	</div>
+
+	<div class="form-buttons">
+		<a id="applyBtn" href="#" class="btn btn-warning btn-lg">Apply</a>
+		<a id="editBtn" href="#" class="btn btn-warning btn-lg">Edit</a>
+		<a id="applicantsBtn" href="#" class="btn btn-warning btn-lg">Applicants</a>
+		<a id="newOpportunityBtn" href="#" class="btn btn-warning btn-lg">New Opportunity</a>
+	</div>
+	<br />
+	
+    	<button class="accordion btn-lg">Job Description</button>
+	<div class="panel">
+	  <p><%= opportunity.jobDescription %></p>
+	</div>
+	
+	<button class="accordion btn-lg">Job Skills</button>
+	<div class="panel">
+	  <p><%= opportunity.jobSkills %></p>
+	</div>
+	
+	<button class="accordion btn-lg">Compensation</button>
+	<div class="panel">
+	  <p><%= opportunity.compensation %></p>
+	</div> 
+	
+	<button class="accordion btn-lg">Company Description</button>
+	<div class="panel">
+	  <p><%= opportunity.companyDescription %></p>
+	</div> 
+	
+	<button class="accordion btn-lg">Logistics</button>
+	<div class="panel">
+	  <p><%= opportunity.logistics %></p>
+	</div> 
+	
+	<button class="accordion btn-lg">Cost of Living</button>
+	<div class="panel">
+	  <p><%= opportunity.costOfLiving %></p>
+	</div> 
+		
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+var v_IsLoggedIn = <%- JSON.stringify(isLoggedIn) %>;
+var v_Code = <%- JSON.stringify(opportunity.code) %>;
+var v_JobTitle = <%- JSON.stringify(opportunity.jobTitle) %>;
+var v_Company = <%- JSON.stringify(opportunity.company) %>;
+var v_jobLocation = <%- JSON.stringify(opportunity.jobLocation) %>;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  }
+}
+
+$("#applyBtn").click(function() {    
+    var url = '/applyToOpp?oppCode=' + v_Code + '&jobTitle=' + v_JobTitle + '&company=' + v_Company;
+    PopupCenter(url, '_blank',650,600);
+});
+
+$("#editBtn").click(function() {
+    window.location = '/registerOpportunity?oppCode=' + v_Code;
+});
+
+$("#applicantsBtn").click(function() {
+    window.location = '/viewApplicants?oppCode=' + v_Code + '&jobTitle=' + v_JobTitle + '&company=' + v_Company + '&jobLocation=' + v_jobLocation;
+});
+
+$("#newOpportunityBtn").click(function() {
+    window.location = '/registerOpportunity';
+});
+
+$(document).ready(function(){
+	if(v_IsLoggedIn) {
+		$("#applyBtn").hide();
+	} else {
+		$("#editBtn").hide();
+		$("#applicantsBtn").hide();
+		$("#newOpportunityBtn").hide();
+	}
+});
+
+</script>
+
