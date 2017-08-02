@@ -1,4 +1,4 @@
-const pool = require.main.require('./config/database');
+const pool = require('../config/database');
 
 var Opportunity = require('../app/models/opportunity');
 

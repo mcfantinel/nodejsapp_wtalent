@@ -14,8 +14,13 @@
 		<div class="col-sm-6 col-sm-offset-3">
 		
 			<div align="center">
-				<h1>Apply to</h1>
-				<h2><%= opportunity.jobTitle %> at <%= opportunity.company %></h2>
+				<% if (opportunity.oppCode) { %>
+					<h1>Apply to</h1>
+					<h2><%= opportunity.jobTitle %> at <%= opportunity.company %></h2>
+				<% } else { %>
+					<h1>Leave your CV</h1>
+					<h4>Leave your CV with us and we can contact you for future opportunities</h4>
+				<% } %>
 			</div>
 		
 			<!-- show any messages that come back with authentication -->

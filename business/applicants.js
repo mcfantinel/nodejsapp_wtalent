@@ -1,5 +1,5 @@
 const
-pool = require.main.require('./config/database');
+pool = require('../config/database');
 var Applicant = require('../app/models/applicant');
 var date_fns = require('date-fns');
 

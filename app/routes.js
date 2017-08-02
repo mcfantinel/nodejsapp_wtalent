@@ -93,10 +93,11 @@ module.exports = function(app, passport) {
 
 	app.post('/contactUs', function(req, res) {
 		var mailOptions = {
-			from : req.body.email,
+			from : 'mcfantinel@gmail.com',
 			to : 'mcfantinel@gmail.com',
 			subject : 'WelTalent Email - ' + req.body.contactType
-					+ '- Titulo: ' + req.body.messageTitle,
+					+ ' - Title: ' + req.body.messageTitle
+					+ ' - From: ' + req.body.email,
 			text : 'Texto: ' + req.body.message
 		};
 		contact.sendEmail(mailOptions, function(err) {

@@ -25,20 +25,26 @@
 	
 </div>
 
-</div>
-
 <script>
 
 function oppClick(code) {
     window.location = '/viewOpportunity?oppCode=' + code;
 }
 
-$("#searchOppBtn").click(function() {
-    var v_SearchString = $("#serchString").val();
-    window.location = '/listOpportunities?searchString=' + v_SearchString;
-});
+
 
 $(document).ready(function(){
+
+	$("#searchOppBtn").click(function() {
+	    var v_SearchString = $("#serchString").val();
+	    window.location = '/listOpportunities?searchString=' + v_SearchString;
+	});
+	
+	$('#serchString').keypress(function(e){
+        if(e.which == 13){
+            $('#searchOppBtn').click();
+        }
+	});
 
 });
 

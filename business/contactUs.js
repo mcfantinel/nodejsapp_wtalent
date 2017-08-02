@@ -1,4 +1,4 @@
-var nodeMailer = require.main.require('./config/email');
+var nodeMailer = require('../config/email');
 
 module.exports.sendEmail = function (emailConfig, done) {
 	nodeMailer.sendEmail(emailConfig, function(res){
