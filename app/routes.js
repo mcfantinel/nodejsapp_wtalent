@@ -5,6 +5,8 @@ var applicants = require('../business/applicants');
 var contact = require('../business/contactUs');
 var util = require('./util');
 
+var cool = require('cool-ascii-faces');
+
 module.exports = function(app, passport) {
 
 	// =====================================
@@ -278,6 +280,10 @@ module.exports = function(app, passport) {
 	app.get('/logout', function(req, res) {
 		req.logout();
 		res.redirect('/');
+	});
+	
+	app.get('/cool', function(request, response) {
+		  response.send(cool());
 	});
 };
 
