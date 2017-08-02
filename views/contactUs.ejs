@@ -8,7 +8,7 @@
 	<% } %>
 
 	<!-- Register Opportunity FORM -->
-	<form class="form-horizontal" action="/contactUs" method="post" encType="multipart/form-data">
+	<form id="contactUsForm" class="form-horizontal" action="/contactUs" method="post" encType="multipart/form-data">
 		<div class="form-group">
 			<label for="contactType" class="col-sm-3 control-label">Contact Type: </label>
 			<div class="col-sm-8 selectContainer">
@@ -60,6 +60,41 @@ $(document).ready(function(){
 			$("#contactType").val("jobSeeker");
 		}
 	}
-});
+	});
+
+	$('#contactUsForm').validate({ // initialize the plugin
+        rules: {
+        	contactType: {
+                required: true
+            },
+            messageTitle: {
+                required: true
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            message: {
+                required: true
+            }
+        },
+        errorElement: "em",
+		errorPlacement: function ( error, element ) {
+			// Add the `help-block` class to the error element
+			error.addClass( "help-block" );
+
+			if ( element.prop( "type" ) === "checkbox" ) {
+				error.insertAfter( element.parent( "label" ) );
+			} else {
+				error.insertAfter( element );
+			}
+		},
+		highlight: function ( element, errorClass, validClass ) {
+			$( element ).parents( ".col-sm-8" ).addClass( "has-error" ).removeClass( "has-success" );
+		},
+		unhighlight: function (element, errorClass, validClass) {
+			$( element ).parents( ".col-sm-8" ).addClass( "has-success" ).removeClass( "has-error" );
+		}
+    });
 
 </script>
