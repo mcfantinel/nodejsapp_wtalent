@@ -17,6 +17,7 @@ var passport = require('passport');
 var flash    = require('connect-flash');
 var configDB = require('./config/database.js');
 
+console.log(process.env.DATABASE_URL);
 var port     = process.env.PORT || 5000;
 var app      = express();
 

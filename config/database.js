@@ -18,7 +18,13 @@ const pg = require('pg');
 
 //connect remote
 var config = {
-database: process.env.DATABASE_URL
+  user: 'qrvxvcytwbrofb', //env var: PGUSER
+  database: 'd6p7n2c90gjons', //env var: PGDATABASE
+  password: '110fd5ab41eae9d08258ddd5605ac52651e9c32f386d8bfeb11ef0b09ddcef96', //env var: PGPASSWORD
+  host: 'ec2-54-163-254-143.compute-1.amazonaws.com', // Server hosting the postgres database
+  port: 5432, //env var: PGPORT
+  //max: 10, // max number of clients in the pool
+  //idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 };
 
 //this initializes a connection pool
