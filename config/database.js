@@ -4,7 +4,9 @@ const pg = require('pg');
 // and client options
 // note: all config is optional and the environment variables
 // will be read if the config is not present
-var config = {
+
+//connect local
+/*var config = {
   user: 'postgres', //env var: PGUSER
   database: 'WelTalent', //env var: PGDATABASE
   password: '1234', //env var: PGPASSWORD
@@ -12,6 +14,11 @@ var config = {
   port: 5432, //env var: PGPORT
   max: 10, // max number of clients in the pool
   idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
+};*/
+
+//connect remote
+var config = {
+database: process.env.DATABASE_URL
 };
 
 //this initializes a connection pool
