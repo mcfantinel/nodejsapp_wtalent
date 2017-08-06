@@ -1,6 +1,6 @@
 <div class="col-sm-12" align="center">
 
-	<h1><span class="fa fa-sign-in"></span> Register Opportunity</h1>
+	<h1 class="form_title">Register Opportunity</h1>
 
 	<!-- show any messages that come back with authentication -->
 	<% if (message.length > 0) { %>
@@ -16,61 +16,67 @@
 		</div>
 		<br />
 		<div class="form-group">
-			<label for="compName" class="col-sm-3 control-label">Company Name: </label>
+			<label for="compName" class="col-sm-3 control-label form_label">COMPANY NAME: </label>
 			<div class="col-sm-8">
 				<input type="text" class="form-control" id="compName" name="compName">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="jobTitle" class="col-sm-3 control-label">Job Title: </label>
+			<label for="jobTitle" class="col-sm-3 control-label form_label">JOB TITLE: </label>
 			<div class="col-sm-8">
 				<input type="text" class="form-control" id="jobTitle" name="jobTitle">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="jobCityCountry" class="col-sm-3 control-label">Job city - Country: </label>
+			<label for="jobCityCountry" class="col-sm-3 control-label form_label">JOB CITY - COUNTRY: </label>
 			<div class="col-sm-8">
 				<input type="text" class="form-control" id="jobCityCountry"  name="jobCityCountry">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="jobDescription" class="col-sm-3 control-label">Job Description: </label>
+			<label for="jobDescription" class="col-sm-3 control-label form_label">JOB DESCRIPTION: </label>
 			<div class="col-sm-8">
 				<textarea class="form-control" rows="5" id="jobDescription" name="jobDescription"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="jobSkills" class="col-sm-3 control-label">Job Skills: </label>
+			<label for="jobSkills" class="col-sm-3 control-label form_label">JOB SKILLS: </label>
 			<div class="col-sm-8">
 				<textarea class="form-control" rows="5" id="jobSkills" name="jobSkills"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="jobCompensation" class="col-sm-3 control-label">Compensation: </label>
+			<label for="jobCompensation" class="col-sm-3 control-label form_label">COMPENSATION: </label>
 			<div class="col-sm-8">
 				<textarea class="form-control" rows="5" id="jobCompensation" name="jobCompensation"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="compDescription" class="col-sm-3 control-label">Company Description: </label>
+			<label for="compDescription" class="col-sm-3 control-label form_label">COMPANY DESCRIPTION: </label>
 			<div class="col-sm-8">
 				<textarea class="form-control" rows="5" id="compDescription" name="compDescription"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="logistics" class="col-sm-3 control-label">Logistics: </label>
+			<label for="logistics" class="col-sm-3 control-label form_label">LOGISTICS: </label>
 			<div class="col-sm-8">
 				<textarea class="form-control" rows="5" id="logistics" name="logistics"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="costOfLiving" class="col-sm-3 control-label">Cost of Living: </label>
+			<label for="costOfLiving" class="col-sm-3 control-label form_label">COST OF LIVING: </label>
 			<div class="col-sm-8">
 				<textarea class="form-control" rows="5" id="costOfLiving" name="costOfLiving"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label">Upload Company Logo: </label>
+			<label for="keywords" class="col-sm-3 control-label form_label">KEYWORDS: </label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" id="keywords" name="keywords">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label form_label">UPLOAD COMPANY LOGO: </label>
 			<div class="col-sm-6">
 				<input type="text" class="form-control" id="upload-companyLogo" name="companyLogoText" readonly="readonly">
 			</div>
@@ -81,7 +87,7 @@
 			</label>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label">Opportunity Image: </label>
+			<label class="col-sm-3 control-label form_label">UPLOAD OPPORTUNITY IMAGE: </label>
 			<div class="col-sm-6">
 				<input type="text" class="form-control" id="upload-oppImage" name="oppImageText" readonly="readonly">
 			</div>
@@ -111,6 +117,7 @@ var v_Code;
 	var v_compensation = <%- JSON.stringify(opportunity.compensation) %> || '';
 	var v_logistics = <%- JSON.stringify(opportunity.logistics) %> || '';
 	var v_costOfLiving = <%- JSON.stringify(opportunity.costOfLiving) %> || '';
+	var v_keywords = <%- JSON.stringify(opportunity.keywords) %> || '';
 	var v_companyLogo = <%- JSON.stringify(opportunity.companyLogo) %> || '';
 	var v_opportunityPicture = <%- JSON.stringify(opportunity.opportunityPicture) %> || '';
 <% } %>
@@ -126,6 +133,7 @@ function editFields() {
 	$('#compDescription').val(v_compensation);
 	$('#logistics').val(v_logistics);
 	$('#costOfLiving').val(v_costOfLiving);
+	$('#keywords').val(v_keywords);
 	$('#upload-companyLogo').val(v_companyLogo);
 	$('#upload-oppImage').val(v_opportunityPicture);
 }
@@ -171,11 +179,7 @@ $(document).ready(function(){
 		},
 		unhighlight: function (element, errorClass, validClass) {
 			$( element ).parents( ".col-sm-8" ).addClass( "has-success" ).removeClass( "has-error" );
-		},
-        submitHandler: function (form) { // for demo
-            alert('Valid form submitted'); // for demo
-            return false; // for demo
-        }
+		}
     });
 });
 

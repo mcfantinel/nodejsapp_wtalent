@@ -10,10 +10,12 @@ module.exports.saveApplicant = function(req, done) {
 	applicantValues.push(req.body.applicantsName);
 	applicantValues.push(req.body.email);
 	applicantValues.push(req.body.nationality);
-	applicantValues.push(req.body.oppCode);
+	if(req.body.oppCode) {
+		applicantValues.push(req.body.oppCode);
+	}
 	applicantValues.push(req.body.appCurriculumText);
 
-	pool.insertApplicant(applicantValues, function(res) {
+	pool.insertApplicant(applicantValues, req.body.oppCode, function(res) {
 		let	appCurriculum = req.files.appCurriculum;
 		if (appCurriculum) {
 			appCurriculum.mv('./public/files/curriculums/' + res.code + "_"

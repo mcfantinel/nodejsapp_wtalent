@@ -125,6 +125,14 @@ module.exports = function(app, passport) {
 	app.get('/missionValues', function(req, res) {
 		res.render('missionValues.ejs');
 	});
+	
+	// =====================================
+	// Mission ===============================
+	// =====================================
+	// show the login form
+	app.get('/aboutUs', function(req, res) {
+		res.render('aboutUs.ejs');
+	});
 
 	// =====================================
 	// Register Opportunity SECTION =========================
@@ -157,7 +165,8 @@ module.exports = function(app, passport) {
 		// return res.render('listOpportunities.ejs');
 		opportunities.listOpportunities(req.query.searchString, function(opps) {
 			return res.render('home.ejs', {
-				opportunities : opps
+				opportunities : opps,
+				layout : false
 			});
 		});
 	});

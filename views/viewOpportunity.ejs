@@ -1,10 +1,10 @@
 <div class="col-sm-12">
 <input type="hidden" id="oppCode" value="<%= opportunity.code %>">
 
-	<div align="center">
-		<h1><%= opportunity.jobTitle %></h1>
-		<h2><%= opportunity.company %></h2>
-		<h4><%= opportunity.jobLocation %></h4>
+	<div style="background-color:rgba(0,0,0,0.6)" align="center">
+		<h1 class="opportunity_title" style="font-size:4.5em"><%= opportunity.jobTitle %></h1>
+		<h2 class="opportunity_title" style="font-size:2.5em"><%= opportunity.company %></h2>
+		<h4 class="opportunity_title" style="font-size:2em"><%= opportunity.jobLocation %></h4>
 	</div>
 
 	<div class="form-buttons">
@@ -55,37 +55,23 @@ var v_Code = <%- JSON.stringify(opportunity.code) %>;
 var v_JobTitle = <%- JSON.stringify(opportunity.jobTitle) %>;
 var v_Company = <%- JSON.stringify(opportunity.company) %>;
 var v_jobLocation = <%- JSON.stringify(opportunity.jobLocation) %>;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].onclick = function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
-  }
-}
-
-$("#applyBtn").click(function() {    
-    var url = '/applyToOpp?oppCode=' + v_Code + '&jobTitle=' + v_JobTitle + '&company=' + v_Company;
-    PopupCenter(url, '_blank',650,600);
-});
-
-$("#editBtn").click(function() {
-    window.location = '/registerOpportunity?oppCode=' + v_Code;
-});
-
-$("#applicantsBtn").click(function() {
-    window.location = '/viewApplicants?oppCode=' + v_Code + '&jobTitle=' + v_JobTitle + '&company=' + v_Company + '&jobLocation=' + v_jobLocation;
-});
-
-$("#newOpportunityBtn").click(function() {
-    window.location = '/registerOpportunity';
-});
+var v_oppImage = <%- JSON.stringify(opportunity.opportunityPicture) %>;
 
 $(document).ready(function(){
+	$('body').css('background-image', 'url(images/' + v_oppImage + ')');
+	
+	for (i = 0; i < acc.length; i++) {
+	  acc[i].onclick = function() {
+	    this.classList.toggle("active");
+	    var panel = this.nextElementSibling;
+	    if (panel.style.maxHeight){
+	      panel.style.maxHeight = null;
+	    } else {
+	      panel.style.maxHeight = panel.scrollHeight + "px";
+	    }
+	  }
+	}
+	
 	if(v_IsLoggedIn) {
 		$("#applyBtn").hide();
 	} else {
@@ -93,6 +79,23 @@ $(document).ready(function(){
 		$("#applicantsBtn").hide();
 		$("#newOpportunityBtn").hide();
 	}
+	
+	$("#applyBtn").click(function() {    
+	    var url = '/applyToOpp?oppCode=' + v_Code + '&jobTitle=' + v_JobTitle + '&company=' + v_Company;
+	    PopupCenter(url, '_blank',650,600);
+	});
+	
+	$("#editBtn").click(function() {
+	    window.location = '/registerOpportunity?oppCode=' + v_Code;
+	});
+	
+	$("#applicantsBtn").click(function() {
+	    window.location = '/viewApplicants?oppCode=' + v_Code + '&jobTitle=' + v_JobTitle + '&company=' + v_Company + '&jobLocation=' + v_jobLocation;
+	});
+	
+	$("#newOpportunityBtn").click(function() {
+	    window.location = '/registerOpportunity';
+	});
 });
 
 </script>

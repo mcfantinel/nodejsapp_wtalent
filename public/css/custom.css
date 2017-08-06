@@ -1,5 +1,7 @@
 body {
-    background-color: lightblue;
+    background-color: #2d73b5;
+    /*background: url(../images/background_sg.jpg) no-repeat center center scroll;*/
+    font-family: Open Sans;
 }
 
 p {
@@ -9,16 +11,6 @@ p {
 .img-logo {
 	max-height: 70px;
 	max-width: 80px;
-}
-
-.navbar-nav > li > a.menu-img-custom {
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
-
-.navbar-nav > li > a.menu-custom {
-    padding-top: 25px;
-    padding-bottom: 25px;
 }
 
 .li_right > li
@@ -45,12 +37,33 @@ p {
     font-size: 50px;
 }
 
+.aboutMissionImg {
+	height: 300px;
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 20px;
+}
+
+.missionVisionBox {
+	border-radius: 25px;
+    border: 2px solid #c0c0c0;
+    padding: 10px;
+    margin-bottom:10px;
+    margin-left:5px;
+    margin-right:5px;
+    background-color: #fafafb;
+    color: black;
+    float: left;
+    width: 32%;
+    height: 200px;
+}
+
 .applicantsBox {
 	border-radius: 25px;
     border: 2px solid #c0c0c0;
     padding: 20px;
     margin-bottom:10px;
-    background-color: #eee;
+    background-color: #fafafb;
     color: black;
 }
 
@@ -58,26 +71,52 @@ p {
     background-color: #ddd;
 }
 
-h2.bold_italic {
+.bold_italic {
     font-weight: bold;
 	font-style: italic;
+}
+
+.form_title {
+    font-weight: bold;
+	color: white;
+}
+
+.opportunity_title {
+    font-weight: bold;
+	color: white;
+}
+
+.form_label {
+	color: white;
 }
 
 label.small-caps {
 	font-variant: small-caps;
 }
 
-h1 {
-	font-family: Open Sans;
+/*-----------------------menu*/
+.navbar-custom {
+	margin-bottom: 0 !important;
+    background-color: #fafafb;
+    /*border-color: #080808;*/
 }
 
-h2 {
-	font-family: Open Sans;
+.navbar-nav > li > a.menu-img-custom {
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
+
+.navbar-nav > li > a.menu-custom {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    font-weight: bold;
+    color: #2d73b5;
+}
+/*-----------------------end_menu*/
 
 /*-----------------------footer*/
 .footer {
-	background: #222;
+	background: #fafafb;
 	height: auto;
 	padding-bottom: 30px;
 	position: relative;
@@ -93,7 +132,7 @@ h2 {
 }
 .footer h3 {
 	border-bottom: 1px solid #BAC1C8;
-	color: #fff;
+	color: #2d73b5;
 	font-size: 18px;
 	font-weight: 600;
 	line-height: 27px;
@@ -106,14 +145,14 @@ h2 {
 	margin-left: 0;
 	padding-left: 0;
 	margin-top: 15px;
-	color: #fff;
+	color: #2d73b5;
 }
 .footer ul li a {
 	padding: 0 0 5px 0;
 	display: block;
 }
 .footer a {
-	color: #fff
+	color: #2d73b5
 }
 .supportLi h4 {
 	font-size: 20px;
@@ -124,7 +163,7 @@ h2 {
 }
 
 .footer-bottom {
-	background: #080808;
+	background: #DCDCDC;
 	border-top: 1px solid #DDDDDD;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -181,7 +220,7 @@ button.accordion.active:after {
 	margin-bottom:15px;
 	border-style: solid;
     border-width: 5px 5px 0px 5px;
-    border-color: lightblue;
+    border-color: #2d73b5;
 	-webkit-box-shadow: 0 8px 6px -6px  #999;
 	   -moz-box-shadow: 0 8px 6px -6px  #999;
 	        box-shadow: 0 8px 6px -6px #999;
@@ -253,7 +292,10 @@ small.smallMeetTeam{
     position: relative;
     width: 100%;
     height: 700px;
-    background: url(../images/background_ini.jpg) no-repeat center center scroll;
+    background: url(../images/DSC_0511_3.jpg) no-repeat center center scroll;
+    /*width: 70%;
+    height: 400px;
+    background-color: lightblue;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -263,6 +305,7 @@ small.smallMeetTeam{
     display: table-cell;
     text-align: center;
     vertical-align: middle;
+    color: #ff8000;
 }
 
 .text-vertical-center h1 {
@@ -272,18 +315,23 @@ small.smallMeetTeam{
     font-weight: 700;
 }
 
+.text-vertical-center h3 {
+    font-size: 2.5em;
+}
+
 /* Custom Button Styles */
 
 .btn-dark {
     border-radius: 0;
-    color: #fff;
-    background-color: rgba(0,0,0,0.4);
+    color: #000;
+    background-color: rgba(255,255,255,0.7);
+    margin: 2px;
 }
 
 .btn-dark:hover,
 .btn-dark:focus,
 .btn-dark:active {
-    color: #fff;
-    background-color: rgba(0,0,0,0.7);
+    color: #000;
+    background-color: rgba(255,255,255,0.9);
 }
 /*-----------------------end_landingPage*/

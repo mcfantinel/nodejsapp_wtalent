@@ -14,6 +14,7 @@ module.exports.saveOpportunity = function (req, done) {
 	oppotunityValues.push(req.body.compDescription);
 	oppotunityValues.push(req.body.logistics);
 	oppotunityValues.push(req.body.costOfLiving);
+	oppotunityValues.push(req.body.keywords);
 	
 	let companyLogo = req.files.companyLogo;
 	if(companyLogo) {
@@ -66,7 +67,7 @@ module.exports.listOpportunities = function (searchString, done) {
 			res.forEach(function(element){
 				opps.push(new Opportunity(element.code, element.company, element.job_title, element.job_location, 
 						element.job_description, element.job_skills, element.company_description, element.compensation, 
-						element.logistics, element.cost_of_living, element.company_logo, element.opportunity_picture));
+						element.logistics, element.cost_of_living, element.keywords, element.company_logo, element.opportunity_picture));
 			});
 		}
 	    return done(opps);
@@ -80,7 +81,7 @@ module.exports.getOpportunity = function (oppCode, done) {
 			if(res) {
 				opp = new Opportunity(res.code, res.company, res.job_title, res.job_location, res.job_description, 
 										res.job_skills,	res.company_description, res.compensation, res.logistics, 
-										res.cost_of_living,	res.company_logo, res.opportunity_picture);
+										res.cost_of_living, res.keywords, res.company_logo, res.opportunity_picture);
 			}
 		    return done(opp);
 		});

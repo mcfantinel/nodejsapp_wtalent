@@ -6,7 +6,7 @@ const pg = require('pg');
 // will be read if the config is not present
 
 //connect local
-/*var config = {
+var config = {
   user: 'postgres', //env var: PGUSER
   database: 'WelTalent', //env var: PGDATABASE
   password: '1234', //env var: PGPASSWORD
@@ -14,9 +14,10 @@ const pg = require('pg');
   port: 5432, //env var: PGPORT
   max: 10, // max number of clients in the pool
   idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
-};*/
+};
 
 //connect remote
+/*
 var config = {
   user: 'qrvxvcytwbrofb', //env var: PGUSER
   database: 'd6p7n2c90gjons', //env var: PGDATABASE
@@ -25,7 +26,7 @@ var config = {
   port: 5432, //env var: PGPORT
   //max: 10, // max number of clients in the pool
   //idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
-};
+};*/
 
 //this initializes a connection pool
 //it will keep idle connections open for 30 seconds
@@ -51,8 +52,8 @@ module.exports.query = function (text, values, callback) {
 module.exports.insertOpportunity = function (values, callback) {	
   console.log('query:', values);
   var text = "INSERT INTO OPPORTUNITY (company, job_title, job_location, job_description, job_skills, company_description, " +
-	"compensation, logistics, cost_of_living, company_logo, opportunity_picture, creation_time)" +
-	"VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,current_timestamp)";
+	"compensation, logistics, cost_of_living, company_logo, keywords, opportunity_picture, creation_time)" +
+	"VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,current_timestamp)";
 	pool.query(text, values, function(err, res) {
 	  if(err) {
 	      return console.error('error running query', err);
@@ -65,7 +66,7 @@ module.exports.updateOpportunity = function (values, callback) {
 	  console.log('query:', values);
 	  var text = "UPDATE OPPORTUNITY SET company = $1, job_title = $2, job_location = $3, job_description = $4, " +
 	  			"job_skills = $5, company_description = $6, compensation = $7, logistics = $8, cost_of_living = $9, " +
-	  			"company_logo = $10, opportunity_picture = $11 where code = $12";
+	  			"keywords = $10, company_logo = $11, opportunity_picture = $12 where code = $13";
 		pool.query(text, values, function(err, res) {
 		  if(err) {
 		      return console.error('error running query', err);
@@ -74,16 +75,22 @@ module.exports.updateOpportunity = function (values, callback) {
 		});	
 	};
 
-module.exports.insertApplicant = function (values, callback) {	
-	  console.log('query:', values);
-	  var text = "INSERT INTO APPLICANT (name, email, country, opportunity_code, curriculum_name, creation_time)" +
-		"VALUES ($1,$2,$3,$4,$5,current_timestamp) RETURNING *";
+module.exports.insertApplicant = function (values, hasOpportunity, callback) {	
+		console.log('query:', values);
+		var text = null;
+		if(hasOpportunity){
+			  text = "INSERT INTO APPLICANT (name, email, country, opportunity_code, curriculum_name, creation_time)" +
+			  	"VALUES ($1,$2,$3,$4,$5,current_timestamp) RETURNING *";
+		}else {
+			  text = "INSERT INTO APPLICANT (name, email, country, curriculum_name, creation_time)" +
+			  	"VALUES ($1,$2,$3,$4,current_timestamp) RETURNING *";
+		}
 		pool.query(text, values, function(err, res) {
 		  if(err) {
 		      return console.error('error running query', err);
 		  }
 		  return callback(res.rows[0]);
-		});	
+		});
 };
 
 module.exports.getOpportunityByCode = function (code, callback) {	
@@ -106,8 +113,8 @@ module.exports.listOpportunities = function (searchString, callback) {
 		  searchString = '%%';
 	  }
 		  
-	  var text = "SELECT code,company,job_title,job_location,company_logo,opportunity_picture FROM OPPORTUNITY WHERE upper(JOB_TITLE) LIKE upper($1) OR upper(COMPANY) LIKE upper($2) OR upper(JOB_LOCATION) LIKE upper($3)";
-	  pool.query(text, [searchString,searchString,searchString], function(err, res) {
+	  var text = "SELECT code,company,job_title,job_location,company_logo,opportunity_picture FROM OPPORTUNITY WHERE upper(JOB_TITLE) LIKE upper($1) OR upper(COMPANY) LIKE upper($2) OR upper(JOB_LOCATION) LIKE upper($3) OR upper(KEYWORDS) LIKE upper($4)";
+	  pool.query(text, [searchString,searchString,searchString,searchString], function(err, res) {
 		  if(err) {
 		      return console.error('error running query', err);
 		  }

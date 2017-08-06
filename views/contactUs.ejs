@@ -1,6 +1,6 @@
 <div class="col-sm-12" align="center">
 
-	<h1>Contact Us</h1>
+	<h1 class="form_title">Contact Us</h1>
 
 	<!-- show any messages that come back with authentication -->
 	<% if (message.length > 0) { %>
@@ -10,7 +10,7 @@
 	<!-- Register Opportunity FORM -->
 	<form id="contactUsForm" class="form-horizontal" action="/contactUs" method="post" encType="multipart/form-data">
 		<div class="form-group">
-			<label for="contactType" class="col-sm-3 control-label">Contact Type: </label>
+			<label for="contactType" class="col-sm-3 control-label form_label">CONTACT TYPE: </label>
 			<div class="col-sm-8 selectContainer">
 				<select type="text" class="selectpicker form-control" id="contactType" name="contactType">
 					<option name="" value=""></option>
@@ -21,19 +21,19 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="messageTitle" class="col-sm-3 control-label">Message Title: </label>
+			<label for="messageTitle" class="col-sm-3 control-label form_label">MESSAGE TITLE: </label>
 			<div class="col-sm-8">
 				<input type="text" class="form-control" id="messageTitle" name="messageTitle">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="email" class="col-sm-3 control-label">Email: </label>
+			<label for="email" class="col-sm-3 control-label form_label">EMAIL: </label>
 			<div class="col-sm-8">
 				<input type="text" class="form-control" id="email"  name="email">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="message" class="col-sm-3 control-label">Message: </label>
+			<label for="message" class="col-sm-3 control-label form_label">MESSAGE: </label>
 			<div class="col-sm-8">
 				<textarea class="form-control" rows="5" id="message" name="message"></textarea>
 			</div>
