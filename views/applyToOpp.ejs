@@ -30,7 +30,7 @@
 		
 			<!-- LOGIN FORM -->
 			<form id="applyToOpp" action="/applyToOpp" method="post" encType="multipart/form-data">
-				<input type="hidden" name="oppCode" value="<%= opportunity.oppCode %>">
+				<input id="oppCode" type="hidden" name="oppCode" value="">
 				<input type="hidden" name="jobTitle" value="<%= opportunity.jobTitle %>">
 				<input type="hidden" name="company" value="<%= opportunity.company %>">
 				<div class="form-buttons">
@@ -67,7 +67,12 @@
 </html>
 
 <script>
-$(document).ready(function(){	
+<% if (opportunity.oppCode) { %>
+	v_oppCode = <%- JSON.stringify(opportunity.oppCode) %> || '';
+	$('#oppCode').val(v_oppCode);
+<% } %>
+
+$(document).ready(function(){
 	$('#applyToOpp').validate({ // initialize the plugin
         rules: {
         	applicantsName: {

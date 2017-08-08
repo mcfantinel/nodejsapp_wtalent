@@ -11,6 +11,7 @@
 		<a id="applyBtn" href="#" class="btn btn-warning btn-lg">Apply</a>
 		<a id="editBtn" href="#" class="btn btn-warning btn-lg">Edit</a>
 		<a id="applicantsBtn" href="#" class="btn btn-warning btn-lg">Applicants</a>
+		<a id="allApplicantsBtn" href="#" class="btn btn-warning btn-lg">All Applicants</a>
 		<a id="newOpportunityBtn" href="#" class="btn btn-warning btn-lg">New Opportunity</a>
 	</div>
 	<br />
@@ -77,6 +78,7 @@ $(document).ready(function(){
 	} else {
 		$("#editBtn").hide();
 		$("#applicantsBtn").hide();
+		$("#allApplicantsBtn").hide();
 		$("#newOpportunityBtn").hide();
 	}
 	
@@ -91,6 +93,10 @@ $(document).ready(function(){
 	
 	$("#applicantsBtn").click(function() {
 	    window.location = '/viewApplicants?oppCode=' + v_Code + '&jobTitle=' + v_JobTitle + '&company=' + v_Company + '&jobLocation=' + v_jobLocation;
+	});
+	
+	$("#allApplicantsBtn").click(function() {
+	    window.location = '/viewApplicants';
 	});
 	
 	$("#newOpportunityBtn").click(function() {

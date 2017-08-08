@@ -10,7 +10,9 @@ module.exports.saveApplicant = function(req, done) {
 	applicantValues.push(req.body.applicantsName);
 	applicantValues.push(req.body.email);
 	applicantValues.push(req.body.nationality);
+	
 	if(req.body.oppCode) {
+		console.log('oppCode: ' + req.body.oppCode);
 		applicantValues.push(req.body.oppCode);
 	}
 	applicantValues.push(req.body.appCurriculumText);

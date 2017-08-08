@@ -85,6 +85,7 @@ module.exports.insertApplicant = function (values, hasOpportunity, callback) {
 			  text = "INSERT INTO APPLICANT (name, email, country, curriculum_name, creation_time)" +
 			  	"VALUES ($1,$2,$3,$4,current_timestamp) RETURNING *";
 		}
+		console.log('texto:', text);
 		pool.query(text, values, function(err, res) {
 		  if(err) {
 		      return console.error('error running query', err);
@@ -123,14 +124,24 @@ module.exports.listOpportunities = function (searchString, callback) {
 };
 
 module.exports.getAllApplicantsByOpp = function (code, callback) {	
-	  console.log('query:', code);
-	  var text = "SELECT code,name,email,country,opportunity_code,curriculum_name,creation_time FROM APPLICANT WHERE opportunity_code = $1";
-	  pool.query(text, code, function(err, res) {
-		  if(err) {
-		      return console.error('error running query', err);
-		  }
-		  return callback(res.rows);
-	  });
+	console.log('query:', code);
+	if(code[0]) {
+		var text = "SELECT code,name,email,country,opportunity_code,curriculum_name,creation_time FROM APPLICANT WHERE opportunity_code = $1";
+		pool.query(text, code, function(err, res) {
+			  if(err) {
+			      return console.error('error running query', err);
+			  }
+			  return callback(res.rows);
+		});
+	} else {
+		  var text = "SELECT code,name,email,country,opportunity_code,curriculum_name,creation_time FROM APPLICANT WHERE opportunity_code is null";
+		  pool.query(text, function(err, res) {
+			  if(err) {
+			      return console.error('error running query', err);
+			  }
+			  return callback(res.rows);
+		  });
+	}
 };
 
 module.exports.getApplicantCV = function (code, callback) {	
@@ -141,7 +152,7 @@ module.exports.getApplicantCV = function (code, callback) {
 		      return console.error('error running query', err);
 		  }
 		  return callback(res.rows);
-	  });
+	  });  
 };
 
 // the pool also supports checking out a client for
