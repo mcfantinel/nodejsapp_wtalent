@@ -52,7 +52,7 @@ module.exports.query = function (text, values, callback) {
 module.exports.insertOpportunity = function (values, callback) {	
   console.log('query:', values);
   var text = "INSERT INTO OPPORTUNITY (company, job_title, job_location, job_description, job_skills, company_description, " +
-	"compensation, logistics, cost_of_living, company_logo, keywords, opportunity_picture, creation_time)" +
+	"compensation, logistics, cost_of_living, keywords, company_logo, opportunity_picture, creation_time)" +
 	"VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,current_timestamp)";
 	pool.query(text, values, function(err, res) {
 	  if(err) {
