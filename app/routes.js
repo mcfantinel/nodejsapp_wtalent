@@ -80,11 +80,11 @@ module.exports = function(app, passport) {
 		var contactTypes = [];
 		contactTypes.push({
 			"value" : "employer",
-			"text" : "For employers"
+			"text" : i18n.__("employers")
 		});
 		contactTypes.push({
 			"value" : "jobSeeker",
-			"text" : "For Job Seeker"
+			"text" : i18n.__("job_seekers")
 		});
 
 		res.render('contactUs.ejs', {
@@ -163,10 +163,12 @@ module.exports = function(app, passport) {
 	// we will use route middleware to verify this (the isLoggedIn function)
 	app.get('/home', function(req, res) {
 		// return res.render('listOpportunities.ejs');
+		//res.setLocale(req.cookies.i18n);
 		opportunities.listOpportunities(req.query.searchString, function(opps) {
 			return res.render('home.ejs', {
 				opportunities : opps,
-				layout : false
+				layout : false//,
+				//i18n: res
 			});
 		});
 	});

@@ -2,46 +2,46 @@
 <input type="hidden" id="oppCode" value="<%= opportunity.code %>">
 
 	<div style="background-color:rgba(0,0,0,0.6)" align="center">
-		<h1 class="opportunity_title" style="font-size:4.5em"><%= opportunity.jobTitle %></h1>
+		<h1 class="opportunity_title" style="font-size:3.5em"><%= opportunity.jobTitle %></h1>
 		<h2 class="opportunity_title" style="font-size:2.5em"><%= opportunity.company %></h2>
-		<h4 class="opportunity_title" style="font-size:2em"><%= opportunity.jobLocation %></h4>
+		<h4 class="opportunity_title" style="font-size:1.5em"><%= opportunity.jobLocation %></h4>
 	</div>
 
 	<div class="form-buttons">
-		<a id="applyBtn" href="#" class="btn btn-warning btn-lg">Apply</a>
-		<a id="editBtn" href="#" class="btn btn-warning btn-lg">Edit</a>
-		<a id="applicantsBtn" href="#" class="btn btn-warning btn-lg">Applicants</a>
-		<a id="allApplicantsBtn" href="#" class="btn btn-warning btn-lg">All Applicants</a>
-		<a id="newOpportunityBtn" href="#" class="btn btn-warning btn-lg">New Opportunity</a>
+		<a id="applyBtn" href="#" class="btn btn-warning btn-lg"><%= __('apply') %></a>
+		<a id="editBtn" href="#" class="btn btn-warning btn-lg"><%= __('edit') %></a>
+		<a id="applicantsBtn" href="#" class="btn btn-warning btn-lg"><%= __('applicants') %></a>
+		<a id="allApplicantsBtn" href="#" class="btn btn-warning btn-lg"><%= __('all_applicants') %></a>
+		<a id="newOpportunityBtn" href="#" class="btn btn-warning btn-lg"><%= __('new_opportunity') %></a>
 	</div>
 	<br />
 	
-    	<button class="accordion btn-lg">Job Description</button>
+    	<button class="accordion btn-lg"><%= __('job_description') %></button>
 	<div class="panel">
 	  <p><%= opportunity.jobDescription %></p>
 	</div>
 	
-	<button class="accordion btn-lg">Job Skills</button>
+	<button class="accordion btn-lg"><%= __('job_skills') %></button>
 	<div class="panel">
 	  <p><%= opportunity.jobSkills %></p>
 	</div>
 	
-	<button class="accordion btn-lg">Compensation</button>
+	<button class="accordion btn-lg"><%= __('compensation') %></button>
 	<div class="panel">
 	  <p><%= opportunity.compensation %></p>
 	</div> 
 	
-	<button class="accordion btn-lg">Company Description</button>
+	<button class="accordion btn-lg"><%= __('company_description') %></button>
 	<div class="panel">
 	  <p><%= opportunity.companyDescription %></p>
 	</div> 
 	
-	<button class="accordion btn-lg">Logistics</button>
+	<button class="accordion btn-lg"><%= __('logistics') %></button>
 	<div class="panel">
 	  <p><%= opportunity.logistics %></p>
 	</div> 
 	
-	<button class="accordion btn-lg">Cost of Living</button>
+	<button class="accordion btn-lg"><%= __('cost_living') %></button>
 	<div class="panel">
 	  <p><%= opportunity.costOfLiving %></p>
 	</div> 

@@ -5,11 +5,11 @@
 			<h2 class="form_title"><%= opportunity.companyName %></h2>
 			<h4 class="form_title"><%= opportunity.jobLocation %></h4>
 		<% } else { %>
-			<h1 class="form_title">CVs Database</h1>
+			<h1 class="form_title"><%= __('cvs_database') %></h1>
 		<% } %>
 		
 		<div class="form-buttons">
-			<button id="downloadAllCvsBtn" class="btn btn-warning btn-lg">Download All CVs</button>
+			<button id="downloadAllCvsBtn" class="btn btn-warning btn-lg"><%= __('download_all_cvs') %></button>
 		</div>
 		
 		<br />

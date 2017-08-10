@@ -8,6 +8,7 @@ var fileUpload = require('express-fileupload');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 var zip = require('express-zip');
+var i18n = require("i18n");
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var path  = require('path');
@@ -25,6 +26,14 @@ var app      = express();
 //mongoose.connect(configDB.url); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
+
+i18n.configure({
+    locales:['en', 'es', 'pt'],
+    directory: __dirname + '/locales',
+    cookie: 'i18n',
+    queryParameter: 'lang',
+    defaultLocale: 'en'
+});
 
 // set up our express application
 app.use(logger('dev'));
@@ -55,6 +64,7 @@ app.use(session({ secret: 'WelTalent.com' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
+app.use(i18n.init);
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'bower_components')));

@@ -1,6 +1,6 @@
 <div class="col-sm-12" align="center">
 
-	<h1 class="form_title">Register Opportunity</h1>
+	<h1 class="form_title"><%= __('register_opportunity') %></h1>
 
 	<!-- show any messages that come back with authentication -->
 	<% if (message.length > 0) { %>
@@ -11,72 +11,72 @@
 	<form id="registerOpp" class="form-horizontal" action="/registerOpportunity" method="post" encType="multipart/form-data">
 		<input type="hidden" id="oppCode" name="oppCode">
 		<div class="form-buttons">
-			<button type="submit" class="btn btn-warning btn-lg">Save</button>
-			<button type="reset" class="btn btn-warning btn-lg">Reset</button>
+			<button type="submit" class="btn btn-warning btn-lg"><%= __('save') %></button>
+			<button type="reset" class="btn btn-warning btn-lg"><%= __('reset') %></button>
 		</div>
 		<br />
 		<div class="form-group">
-			<label for="compName" class="col-sm-3 control-label form_label">COMPANY NAME: </label>
+			<label for="compName" class="col-sm-3 control-label form_label"><%= __('company_name') %>: </label>
 			<div class="col-sm-8">
 				<input type="text" class="form-control" id="compName" name="compName">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="jobTitle" class="col-sm-3 control-label form_label">JOB TITLE: </label>
+			<label for="jobTitle" class="col-sm-3 control-label form_label"><%= __('job_title') %>: </label>
 			<div class="col-sm-8">
 				<input type="text" class="form-control" id="jobTitle" name="jobTitle">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="jobCityCountry" class="col-sm-3 control-label form_label">JOB CITY - COUNTRY: </label>
+			<label for="jobCityCountry" class="col-sm-3 control-label form_label"><%= __('job_city') %> - <%= __('country') %>: </label>
 			<div class="col-sm-8">
 				<input type="text" class="form-control" id="jobCityCountry"  name="jobCityCountry">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="jobDescription" class="col-sm-3 control-label form_label">JOB DESCRIPTION: </label>
+			<label for="jobDescription" class="col-sm-3 control-label form_label"><%= __('job_description') %>: </label>
 			<div class="col-sm-8">
 				<textarea class="form-control" rows="5" id="jobDescription" name="jobDescription"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="jobSkills" class="col-sm-3 control-label form_label">JOB SKILLS: </label>
+			<label for="jobSkills" class="col-sm-3 control-label form_label"><%= __('job_skills') %>: </label>
 			<div class="col-sm-8">
 				<textarea class="form-control" rows="5" id="jobSkills" name="jobSkills"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="jobCompensation" class="col-sm-3 control-label form_label">COMPENSATION: </label>
+			<label for="jobCompensation" class="col-sm-3 control-label form_label"><%= __('compensation') %>: </label>
 			<div class="col-sm-8">
 				<textarea class="form-control" rows="5" id="jobCompensation" name="jobCompensation"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="compDescription" class="col-sm-3 control-label form_label">COMPANY DESCRIPTION: </label>
+			<label for="compDescription" class="col-sm-3 control-label form_label"><%= __('company_description') %>: </label>
 			<div class="col-sm-8">
 				<textarea class="form-control" rows="5" id="compDescription" name="compDescription"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="logistics" class="col-sm-3 control-label form_label">LOGISTICS: </label>
+			<label for="logistics" class="col-sm-3 control-label form_label"><%= __('logistics') %>: </label>
 			<div class="col-sm-8">
 				<textarea class="form-control" rows="5" id="logistics" name="logistics"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="costOfLiving" class="col-sm-3 control-label form_label">COST OF LIVING: </label>
+			<label for="costOfLiving" class="col-sm-3 control-label form_label"><%= __('cost_living') %>: </label>
 			<div class="col-sm-8">
 				<textarea class="form-control" rows="5" id="costOfLiving" name="costOfLiving"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="keywords" class="col-sm-3 control-label form_label">KEYWORDS: </label>
+			<label for="keywords" class="col-sm-3 control-label form_label"><%= __('keywords') %>: </label>
 			<div class="col-sm-8">
 				<input type="text" class="form-control" id="keywords" name="keywords">
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label form_label">UPLOAD COMPANY LOGO: </label>
+			<label class="col-sm-3 control-label form_label"><%= __('upload_company_logo') %>: </label>
 			<div class="col-sm-6">
 				<input type="text" class="form-control" id="upload-companyLogo" name="companyLogoText" readonly="readonly">
 			</div>
@@ -87,7 +87,7 @@
 			</label>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label form_label">UPLOAD OPPORTUNITY IMAGE: </label>
+			<label class="col-sm-3 control-label form_label"><%= __('upload_opportunity_image') %>: </label>
 			<div class="col-sm-6">
 				<input type="text" class="form-control" id="upload-oppImage" name="oppImageText" readonly="readonly">
 			</div>

@@ -15,6 +15,7 @@
     "express-session": "^1.15.4",
     "express-validator": "^3.2.1",
     "express-zip": "^2.0.1",
+    "i18n": "^0.8.3",
     "morgan": "^1.8.2",
     "nodemailer": "^4.0.1",
     "passport": "~0.1.17",

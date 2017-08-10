@@ -15,11 +15,11 @@
 		
 			<div align="center">
 				<% if (opportunity.oppCode) { %>
-					<h1 class="form_title">Apply to</h1>
-					<h2 class="form_title"><%= opportunity.jobTitle %> at <%= opportunity.company %></h2>
+					<h1 class="form_title"><%= __('apply_to') %></h1>
+					<h2 class="form_title"><%= opportunity.jobTitle %> <%= __('at') %> <%= opportunity.company %></h2>
 				<% } else { %>
-					<h1 class="form_title">Leave your CV</h1>
-					<h4 class="form_title">Leave your CV with us and we can contact you for future opportunities</h4>
+					<h1 class="form_title"><%= __('leave_cv') %></h1>
+					<h4 class="form_title"><%= __('leave_cv_contact') %></h4>
 				<% } %>
 			</div>
 		
@@ -34,25 +34,25 @@
 				<input type="hidden" name="jobTitle" value="<%= opportunity.jobTitle %>">
 				<input type="hidden" name="company" value="<%= opportunity.company %>">
 				<div class="form-buttons">
-					<button type="submit" class="btn btn-warning btn-lg">Apply</button>
+					<button type="submit" class="btn btn-warning btn-lg"><%= __('apply') %></button>
 				</div>
 				<div class="form-group">
-					<label class="form_label">APPLICANT`S NAME</label>
+					<label class="form_label"><%= __('applicants_name') %></label>
 					<input type="text" class="form-control" name="applicantsName">
 				</div>
 				<div class="form-group">
-					<label class="form_label">EMAIL ADDRESS</label>
+					<label class="form_label"><%= __('email_address') %></label>
 					<input type="text" class="form-control" name="email">
 				</div>
 				<div class="form-group">
-					<label class="form_label">NATIONALITY</label>
+					<label class="form_label"><%= __('nationality') %></label>
 					<input type="text" class="form-control" name="nationality">
 				</div>
 
 				<div class="form-group text-center">
 					<label class="btn btn-info btn-lg" for="appCurriculum">
           					<span class="glyphicon glyphicon-upload"></span>
-          					<p>Upload CV (.pdf)</p>
+          					<p><%= __('upload_cv') %></p>
 						    <input id="appCurriculum" type="file" style="display:none" name="appCurriculum"
 						    	onchange="$('#upload-appCurriculum').val(this.files[0].name)">
 					</label>
