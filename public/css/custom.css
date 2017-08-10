@@ -138,7 +138,7 @@ label.small-caps {
 	line-height: 27px;
 	padding: 40px 0 10px;
 	text-transform: uppercase;
-	font-family: Sans Serif;
+	font-family: Open Sans;
 }
 .footer ul {
 	font-size: 13px;
@@ -147,7 +147,7 @@ label.small-caps {
 	padding-left: 0;
 	margin-top: 15px;
 	color: #2d73b5;
-	font-family: Sans Serif;
+	font-family: Open Sans;
 }
 .footer ul li a {
 	padding: 0 0 5px 0;
@@ -244,13 +244,13 @@ button.accordion.active:after {
 	border-top:1px solid #dadada;
 	padding-top:5px;
 	font-size:1.2em;
-	font-family: Sans Serif;
+	font-family: Open Sans;
 }
 
 .pricetext {
 	font-weight:bold;
 	font-size:1.4em;
-	font-family: Sans Serif;
+	font-family: Open Sans;
 }
 
 .img-company-opp {
@@ -330,7 +330,7 @@ small.smallMeetTeam{
     color: #000;
     background-color: rgba(255,255,255,0.7);
     margin: 2px;
-    font-family: Sans Serif;
+    font-family: Open Sans;
 }
 
 .btn-dark:hover,
