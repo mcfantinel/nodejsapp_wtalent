@@ -4,6 +4,7 @@ var opportunities = require('../business/opportunities');
 var applicants = require('../business/applicants');
 var contact = require('../business/contactUs');
 var util = require('./util');
+var i18n = require("i18n");
 
 var cool = require('cool-ascii-faces');
 
