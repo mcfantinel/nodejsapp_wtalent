@@ -356,3 +356,18 @@ small.smallMeetTeam{
 	padding:0;
 }
 /*-----------------------end_menuFlags*/
+
+/*-----------------------socialNetworkIcons*/
+.social-network-icon li i {
+	font-size:24px;
+}
+
+.social-network-icon li i.icoLinkedin {
+	color:#007bb7;
+}
+
+.social-network-icon li i.icoFacebook {
+	color:#3B5998;
+}
+
+/*-----------------------end_socialNetworkIcons*/

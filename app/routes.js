@@ -279,11 +279,20 @@ module.exports = function(app, passport) {
 					}
 					applicants.saveApplicant(req, function(err) {
 						if (err) {
-							return res.redirect('/applyToOpp');
+							return res.redirect('/appliedSuccessfully');
 						}
-						return res.redirect('/applyToOpp');
+						return res.redirect('/appliedSuccessfully');
 					});
 				});
+	});
+	
+	// =====================================
+	// Applied successfully ================
+	// =====================================
+	app.get('/appliedSuccessfully', function(req, res) {
+		res.render('appliedSuccessfully.ejs', {
+			layout : false
+		});
 	});
 
 	// =====================================
