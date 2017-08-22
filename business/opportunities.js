@@ -18,7 +18,7 @@ module.exports.saveOpportunity = function (req, done) {
 	
 	let companyLogo = req.files.companyLogo;
 	if(companyLogo) {
-		companyLogo.mv('./public/images/' + req.body.companyLogoText, function(err) {
+		companyLogo.mv('./public/oppImages/' + req.body.companyLogoText, function(err) {
 			if (err) {
 			  console.log('Error to upload company logo.');
 			}
@@ -27,7 +27,7 @@ module.exports.saveOpportunity = function (req, done) {
 	
 	let oppImage = req.files.oppImage;
 	if(oppImage) {
-		oppImage.mv('./public/images/' + req.body.oppImageText, function(err) {
+		oppImage.mv('./public/oppImages/' + req.body.oppImageText, function(err) {
 			if (err) {
 			  console.log('Error to upload opportunity image.');
 			}

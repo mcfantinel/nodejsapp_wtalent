@@ -6,7 +6,7 @@ const pg = require('pg');
 // will be read if the config is not present
 
 //connect local
-/*var config = {
+var config = {
   user: 'postgres', //env var: PGUSER
   database: 'WelTalent', //env var: PGDATABASE
   password: '1234', //env var: PGPASSWORD
@@ -15,9 +15,9 @@ const pg = require('pg');
   max: 10, // max number of clients in the pool
   idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 };
-*/
-//connect remote
 
+//connect remote
+/*
 var config = {
   user: 'qrvxvcytwbrofb', //env var: PGUSER
   database: 'd6p7n2c90gjons', //env var: PGDATABASE
@@ -27,7 +27,7 @@ var config = {
   //max: 10, // max number of clients in the pool
   //idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 };
-
+*/
 //this initializes a connection pool
 //it will keep idle connections open for 30 seconds
 //and set a limit of maximum 10 idle clients

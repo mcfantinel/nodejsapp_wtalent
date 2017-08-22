@@ -59,7 +59,7 @@ var v_jobLocation = <%- JSON.stringify(opportunity.jobLocation) %>;
 var v_oppImage = <%- JSON.stringify(opportunity.opportunityPicture) %>;
 
 $(document).ready(function(){
-	$('body').css('background-image', 'url(images/' + v_oppImage + ')');
+	$('body').css('background-image', 'url(oppImages/' + v_oppImage + ')');
 	
 	for (i = 0; i < acc.length; i++) {
 	  acc[i].onclick = function() {

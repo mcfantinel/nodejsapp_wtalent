@@ -173,6 +173,11 @@ module.exports = function(app, passport) {
 			});
 		});
 	});
+	
+	app.get('/setlocale/:lang', function (req, res) {
+		res.cookie('i18n', req.params.lang);
+		res.redirect('/home');
+	});
 
 	// =====================================
 	// VIEW OPPORTUNITY SECTION =========================
