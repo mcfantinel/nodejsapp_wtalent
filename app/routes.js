@@ -158,7 +158,7 @@ module.exports = function(app, passport) {
 	});
 
 	// =====================================
-	// VIEW OPPORTUNITY SECTION =========================
+	// VIEW OPPORTUNITY SECTION ============
 	// =====================================
 	// we will want this protected so you have to be logged in to visit
 	// we will use route middleware to verify this (the isLoggedIn function)
@@ -174,6 +174,9 @@ module.exports = function(app, passport) {
 		});
 	});
 	
+	// =====================================
+	// SET LOCALE ==========================
+	// =====================================
 	app.get('/setlocale/:lang', function (req, res) {
 		res.cookie('i18n', req.params.lang);
 		res.redirect('/home');
