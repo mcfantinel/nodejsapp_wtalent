@@ -16,5 +16,12 @@ node_modules
 
 config/secretDatabase.js
 config/secretAuth.js
-/public/files
-/public/oppImages
+
+# exclude everything
+/public/files/curriculums/*
+/public/oppImages/*
+
+
+# exception to the rule
+!/public/files/curriculums/.gitkeep
+!/public/oppImages/.gitkeep
