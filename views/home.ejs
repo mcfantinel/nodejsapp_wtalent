@@ -44,7 +44,7 @@
 		<div class="col-sm-14 col-centered">
 			<% for (var i = 0; i < opportunities.length; i++) { %>	
 			<div class="col-md-4 column productbox">
-			    <a href="#" onclick="oppClick(<%= opportunities[i].code %>)"><img src="oppImages/<%= opportunities[i].opportunityPicture %>" class="img-responsive"></a>
+			    <a href="#" onclick="oppClick(<%= opportunities[i].code %>)"><img  class="img-opportunity-opp" src="oppImages/<%= opportunities[i].opportunityPicture %>" class="img-responsive"></a>
 			    <div class="producttitle"><%= opportunities[i].jobTitle %></div>
 			    <div class="productprice"><div class="pull-right"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= opportunities[i].jobLocation %></div><div class="pricetext"><img class="img-company-opp" src="oppImages/<%= opportunities[i].companyLogo %>" /> <%= opportunities[i].company %></div></div>
 			</div>
