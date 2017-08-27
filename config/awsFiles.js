@@ -1,7 +1,7 @@
 var AWS = require('aws-sdk'); 
 var s3 = new AWS.S3();
 
-var file = require('fs')
+var fs = require('fs')
 
 var bucketName = process.env.S3_BUCKET || "mcapaverdestorage";
 
@@ -20,9 +20,9 @@ module.exports.uploadFile = function (fileName, fileData, callback) {
 };
 
 module.exports.getFile = function (fileName, callback) {
-	file.stat('./public/path/' + fileName, function(err, stat) {
+	fs.stat('./public/path/' + fileName, function(err, stat) {
 	  if (err != null) { 
-		file.createWriteStream('./public/path/' + fileName);
+		var file = fs.createWriteStream('./public/path/' + fileName);
 		console.log(fileName);
 		var stream = s3.getObject({
 			Bucket: bucketName,
