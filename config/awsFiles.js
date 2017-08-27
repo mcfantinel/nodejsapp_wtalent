@@ -23,11 +23,10 @@ module.exports.getFile = function (fileName, callback) {
 	fs.stat('./public/path/' + fileName, function(err, stat) {
 	  if (err != null) { 
 		var file = fs.createWriteStream('./public/path/' + fileName);
-		console.log(fileName);
 		var stream = s3.getObject({
 			Bucket: bucketName,
 			Key: fileName
-		}).createReadStream().pipe(file());
+		}).createReadStream().pipe(file);
 		stream.on('finish', function () { 
 			return callback(null);
 		});
