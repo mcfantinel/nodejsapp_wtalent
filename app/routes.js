@@ -136,7 +136,7 @@ module.exports = function(app, passport) {
 	});
 
 	// =====================================
-	// Register Opportunity SECTION =========================
+	// Register Opportunity SECTION ========
 	// =====================================
 	app.get('/registerOpportunity', isLoggedIn, function(req, res) {
 		opportunities.getOpportunity(req.query.oppCode, function(opp) {
@@ -152,6 +152,18 @@ module.exports = function(app, passport) {
 		opportunities.saveOpportunity(req, function(err) {
 			if (err) {
 				return res.redirect('/registerOpportunity');
+			}
+			return res.redirect('/listOpportunities');
+		});
+	});
+	
+	// =====================================
+	// Inactivate Opportunity SECTION ======
+	// =====================================
+	app.get('/inactivateOpportunity', isLoggedIn, function(req, res) {
+		opportunities.inactivateOpportunity(req.query.oppCode, function(err) {
+			if (err) {
+				return res.redirect('/listOpportunity');
 			}
 			return res.redirect('/listOpportunities');
 		});

@@ -13,6 +13,7 @@
 		<a id="applicantsBtn" href="#" class="btn btn-warning btn-lg"><%= __('applicants') %></a>
 		<a id="allApplicantsBtn" href="#" class="btn btn-warning btn-lg"><%= __('all_applicants') %></a>
 		<a id="newOpportunityBtn" href="#" class="btn btn-warning btn-lg"><%= __('new_opportunity') %></a>
+		<a id="inactivateOpportunityBtn" href="#" class="btn btn-warning btn-lg"><%= __('inactivate_opportunity') %></a>
 	</div>
 	<br />
 	
@@ -80,6 +81,7 @@ $(document).ready(function(){
 		$("#applicantsBtn").hide();
 		$("#allApplicantsBtn").hide();
 		$("#newOpportunityBtn").hide();
+		$("#inactivateOpportunityBtn").hide();
 	}
 	
 	$("#applyBtn").click(function() {    
@@ -102,6 +104,14 @@ $(document).ready(function(){
 	$("#newOpportunityBtn").click(function() {
 	    window.location = '/registerOpportunity';
 	});
+	
+	$("#inactivateOpportunityBtn").click(function() {
+		var r = confirm("Are you sure you want to inactivate the opportunity?");
+		if (r == true) {
+		    window.location = '/inactivateOpportunity?oppCode=' + v_Code;
+		}
+	});
+	
 });
 
 </script>

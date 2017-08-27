@@ -35,14 +35,7 @@ module.exports.saveOpportunity = function (req, done) {
 	}
 	
 	let oppImage = req.files.oppImage;
-	if(oppImage) {
-		// oppImage.mv('./public/oppImages/' + req.body.oppImageText,
-		// function(err) {
-		// if (err) {
-		// console.log('Error to upload opportunity image.');
-		// }
-		//		});
-	
+	if(oppImage) {	
 		awsFiles.uploadFile('Sys_Images/' + req.body.oppImageText,
 				oppImage.data, function(err) {
 			if (err) {
@@ -123,5 +116,20 @@ module.exports.getOpportunity = function (oppCode, done) {
 	else {
 		var opp = {};
 		return done(opp);
+	}
+};
+
+module.exports.inactivateOpportunity = function (oppCode, done) {
+	if(oppCode) {
+		pool.inactivateOpportunity([oppCode], function (err) {
+	        if (err)
+	        {
+	            return done(err);
+	        }
+	        return done(null);
+	    });
+	}
+	else {
+		return done(null);
 	}
 };

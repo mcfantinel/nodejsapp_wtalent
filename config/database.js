@@ -52,8 +52,8 @@ module.exports.query = function (text, values, callback) {
 module.exports.insertOpportunity = function (values, callback) {	
   console.log('query:', values);
   var text = "INSERT INTO OPPORTUNITY (company, job_title, job_location, job_description, job_skills, company_description, " +
-	"compensation, logistics, cost_of_living, keywords, company_logo, opportunity_picture, creation_time)" +
-	"VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,current_timestamp)";
+	"compensation, logistics, cost_of_living, keywords, company_logo, opportunity_picture, active, creation_time)" +
+	"VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,true,current_timestamp)";
 	pool.query(text, values, function(err, res) {
 	  if(err) {
 	      return console.error('error running query', err);
@@ -63,17 +63,17 @@ module.exports.insertOpportunity = function (values, callback) {
 };
 
 module.exports.updateOpportunity = function (values, callback) {	
-	  console.log('query:', values);
-	  var text = "UPDATE OPPORTUNITY SET company = $1, job_title = $2, job_location = $3, job_description = $4, " +
-	  			"job_skills = $5, company_description = $6, compensation = $7, logistics = $8, cost_of_living = $9, " +
-	  			"keywords = $10, company_logo = $11, opportunity_picture = $12 where code = $13";
-		pool.query(text, values, function(err, res) {
-		  if(err) {
-		      return console.error('error running query', err);
-		  }
-		  return callback(null);
-		});	
-	};
+	console.log('query:', values);
+  	var text = "UPDATE OPPORTUNITY SET company = $1, job_title = $2, job_location = $3, job_description = $4, " +
+  			"job_skills = $5, company_description = $6, compensation = $7, logistics = $8, cost_of_living = $9, " +
+  			"keywords = $10, company_logo = $11, opportunity_picture = $12 where code = $13";
+	pool.query(text, values, function(err, res) {
+	  if(err) {
+	      return console.error('error running query', err);
+	  }
+	  return callback(null);
+	});	
+};
 
 module.exports.insertApplicant = function (values, hasOpportunity, callback) {	
 		console.log('query:', values);
@@ -114,7 +114,7 @@ module.exports.listOpportunities = function (searchString, callback) {
 		  searchString = '%%';
 	  }
 		  
-	  var text = "SELECT code,company,job_title,job_location,company_logo,opportunity_picture FROM OPPORTUNITY WHERE upper(JOB_TITLE) LIKE upper($1) OR upper(COMPANY) LIKE upper($2) OR upper(JOB_LOCATION) LIKE upper($3) OR upper(KEYWORDS) LIKE upper($4)";
+	  var text = "SELECT code,company,job_title,job_location,company_logo,opportunity_picture FROM OPPORTUNITY WHERE ACTIVE = TRUE AND (upper(JOB_TITLE) LIKE upper($1) OR upper(COMPANY) LIKE upper($2) OR upper(JOB_LOCATION) LIKE upper($3) OR upper(KEYWORDS) LIKE upper($4))";
 	  pool.query(text, [searchString,searchString,searchString,searchString], function(err, res) {
 		  if(err) {
 		      return console.error('error running query', err);
@@ -153,6 +153,17 @@ module.exports.getApplicantCV = function (code, callback) {
 		  }
 		  return callback(res.rows);
 	  });  
+};
+
+module.exports.inactivateOpportunity = function (values, callback) {	
+	console.log('query:', values);
+  	var text = "UPDATE OPPORTUNITY SET active = false where code = $1";
+	pool.query(text, values, function(err, res) {
+	  if(err) {
+	      return console.error('error running query', err);
+	  }
+	  return callback(null);
+	});	
 };
 
 // the pool also supports checking out a client for
