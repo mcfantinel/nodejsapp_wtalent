@@ -27,7 +27,7 @@ module.exports.getFile = function (fileName, callback) {
 		var stream = s3.getObject({
 			Bucket: bucketName,
 			Key: fileName
-		}).createReadStream().pipe(file);
+		}).createReadStream().pipe(file());
 		stream.on('finish', function () { 
 			return callback(null);
 		});
