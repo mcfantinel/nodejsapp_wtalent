@@ -1,6 +1,7 @@
 const pool = require('../config/database');
-
+var awsFiles = require('../config/awsFiles');
 var Opportunity = require('../app/models/opportunity');
+var async = require('async');
 
 module.exports.saveOpportunity = function (req, done) {
 	
@@ -18,18 +19,34 @@ module.exports.saveOpportunity = function (req, done) {
 	
 	let companyLogo = req.files.companyLogo;
 	if(companyLogo) {
-		companyLogo.mv('./public/oppImages/' + req.body.companyLogoText, function(err) {
+		// companyLogo.mv('./public/oppImages/' + req.body.companyLogoText,
+		// function(err) {
+		// if (err) {
+		// console.log('Error to upload company logo.');
+		// }
+		//		});
+		
+		awsFiles.uploadFile('Sys_Images/' + req.body.companyLogoText,
+				companyLogo.data, function(err) {
 			if (err) {
-			  console.log('Error to upload company logo.');
+				console.log('Error to upload company logo.');
 			}
 		});
 	}
 	
 	let oppImage = req.files.oppImage;
 	if(oppImage) {
-		oppImage.mv('./public/oppImages/' + req.body.oppImageText, function(err) {
+		// oppImage.mv('./public/oppImages/' + req.body.oppImageText,
+		// function(err) {
+		// if (err) {
+		// console.log('Error to upload opportunity image.');
+		// }
+		//		});
+	
+		awsFiles.uploadFile('Sys_Images/' + req.body.oppImageText,
+				oppImage.data, function(err) {
 			if (err) {
-			  console.log('Error to upload opportunity image.');
+				console.log('Error to upload opportunity image.');
 			}
 		});
 	}
@@ -64,13 +81,30 @@ module.exports.listOpportunities = function (searchString, done) {
 	pool.listOpportunities([searchString], function(res){
 		var opps = [];
 		if(res) {
-			res.forEach(function(element){
+			async.each(res, function(element, callback) {
 				opps.push(new Opportunity(element.code, element.company, element.job_title, element.job_location, 
 						element.job_description, element.job_skills, element.company_description, element.compensation, 
 						element.logistics, element.cost_of_living, element.keywords, element.company_logo, element.opportunity_picture));
+				
+				awsFiles.getFile('Sys_Images/' + element.company_logo , 
+						function(err, data) {
+							if (err) {
+								console.log('Error to download company logo.');
+							}
+				});
+				
+				awsFiles.getFile('Sys_Images/' + element.opportunity_picture , 
+						function(err, data) {
+							if (err) {
+								console.log('Error to download opp image.');
+							}
+							callback();
+				});
+			}, function(err) {
+			    if( err ) { return console.log(err); }
+			    return done(opps);
 			});
 		}
-	    return done(opps);
 	});
 };
 

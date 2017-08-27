@@ -17,6 +17,7 @@ var pg = require('pg');
 var passport = require('passport');
 var flash    = require('connect-flash');
 var configDB = require('./config/database.js');
+var aws = require('aws-sdk');
 
 console.log(process.env.DATABASE_URL);
 var port     = process.env.PORT || 5000;
@@ -34,6 +35,14 @@ i18n.configure({
     queryParameter: 'lang',
     defaultLocale: 'en'
 });
+
+aws.config.region = 'us-east-2';
+aws.config.accessKeyId = 'AKIAJ7DHJKBXSP2LIMGQ';
+aws.config.secretAccessKey = '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';
+//	accessKeyId: 'i18n',
+//	secretAccessKey: 'lang',
+//	region: 'us-east-2'
+//});
 
 // set up our express application
 app.use(logger('dev'));

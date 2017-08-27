@@ -96,8 +96,8 @@ module.exports = function(app, passport) {
 
 	app.post('/contactUs', function(req, res) {
 		var mailOptions = {
-			from : 'mcfantinel@gmail.com',
-			to : 'mcfantinel@gmail.com',
+			from : 'contato@weltalent.com',
+			to : 'contato@weltalent.com',
 			subject : 'WelTalent Email - ' + req.body.contactType
 					+ ' - Title: ' + req.body.messageTitle
 					+ ' - From: ' + req.body.email,

@@ -1,7 +1,8 @@
-const
-pool = require('../config/database');
+const pool = require('../config/database');
+var awsFiles = require('../config/awsFiles');
 var Applicant = require('../app/models/applicant');
 var date_fns = require('date-fns');
+var async = require('async');
 
 module.exports.saveApplicant = function(req, done) {
 
@@ -20,15 +21,22 @@ module.exports.saveApplicant = function(req, done) {
 	pool.insertApplicant(applicantValues, req.body.oppCode, function(res) {
 		let	appCurriculum = req.files.appCurriculum;
 		if (appCurriculum) {
-			appCurriculum.mv('./public/files/curriculums/' + res.code + "_"
-					+ res.curriculum_name, function(err) {
-				if (err) {
-					console.log('Error to upload applicant curriculum.');
-				}
+			// appCurriculum.mv('./public/files/curriculums/' + res.code + "_"
+			// + res.curriculum_name, function(err) {
+			// if (err) {
+			// console.log('Error to upload applicant curriculum.');
+			// }
+			// });
+			
+			awsFiles.uploadFile('Curriculums/' + res.code + "_" + res.curriculum_name , appCurriculum.data, 
+					function(err) {
+						if (err) {
+							console.log('Error to upload applicant curriculum.');
+						}
+						return done(null);
 			});
 		}
 
-		return done(null);
 	});
 };
 
@@ -52,29 +60,56 @@ module.exports.getCurriculum = function(applicantsCode, oppCode, done) {
 		pool.getApplicantCV([ applicantsCode ], function(res) {
 			var curriculums = [];
 			if (res) {
-				res.forEach(function(element) {
-					curriculums.push({
-						path : './public/files/curriculums/' + element.code
-								+ "_" + element.curriculum_name,
-						name : element.code + "_" + element.curriculum_name
+				async.each(res, function(element, callback) {
+											// curriculums.push({
+											// path :
+											// './public/files/curriculums/' +
+											// element.code
+											// + "_" + element.curriculum_name,
+											// name : element.code + "_" +
+											// element.curriculum_name
+											//					});
+					
+					awsFiles.getFile('Curriculums/' + element.code + "_" + element.curriculum_name , 
+						function(err, data) {
+							if (err) {
+								console.log('Error to download applicant curriculum.');
+								return done(curriculums);
+							}
+							curriculums.push({
+								path : './public/path/Curriculums/' + element.code + "_" + element.curriculum_name, 
+								name : element.code + "_" + element.curriculum_name}
+							);
+							callback();
 					});
+				}, function(err) {
+				    if( err ) { return console.log(err); }
+				    return done(curriculums);
 				});
 			}
-			return done(curriculums);
 		});
 	} else {
 		pool.getAllApplicantsByOpp([ oppCode ], function(res) {
 			var curriculums = [];
 			if (res) {
-				res.forEach(function(element) {
-					curriculums.push({
-						path : './public/files/curriculums/' + element.code
-								+ "_" + element.curriculum_name,
-						name : element.code + "_" + element.curriculum_name
+				async.each(res, function(element, callback) {
+					awsFiles.getFile('Curriculums/' + element.code + "_" + element.curriculum_name , 
+						function(err, data) {
+							if (err) {
+								console.log('Error to download applicant curriculum.');
+								return done(curriculums);
+							}
+							curriculums.push({
+								path : './public/path/Curriculums/' + element.code + "_" + element.curriculum_name, 
+								name : element.code + "_" + element.curriculum_name}
+							);
+							callback();
 					});
+				}, function(err) {
+				    if( err ) { return console.log(err); }
+				    return done(curriculums);
 				});
 			}
-			return done(curriculums);
 		});
 	}
 };
