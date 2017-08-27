@@ -37,8 +37,8 @@ i18n.configure({
 });
 
 aws.config.region = 'us-east-2';
-aws.config.accessKeyId = 'AKIAJ7DHJKBXSP2LIMGQ';
-aws.config.secretAccessKey = '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';
+//aws.config.accessKeyId = 'AKIAJ7DHJKBXSP2LIMGQ';
+//aws.config.secretAccessKey = '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';
 //	accessKeyId: 'i18n',
 //	secretAccessKey: 'lang',
 //	region: 'us-east-2'
