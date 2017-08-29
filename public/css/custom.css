@@ -1,7 +1,7 @@
 body {
     background-color: #2d73b5;
     /*background: url(../images/background_sg.jpg) no-repeat center center scroll;*/
-    font-family: Open Sans;
+    font-family: Open Sans, sans-serif;
 }
 
 p {
@@ -155,7 +155,7 @@ label.small-caps {
 	line-height: 27px;
 	padding: 40px 0 10px;
 	text-transform: uppercase;
-	font-family: Open Sans;
+	font-family: Open Sans, sans-serif;
 }
 .footer ul {
 	font-size: 13px;
@@ -164,7 +164,7 @@ label.small-caps {
 	padding-left: 0;
 	margin-top: 15px;
 	color: #2d73b5;
-	font-family: Open Sans;
+	font-family: Open Sans, sans-serif;
 }
 .footer ul li a {
 	padding: 0 0 5px 0;
@@ -262,13 +262,13 @@ button.accordion.active:after {
 	border-top:1px solid #dadada;
 	padding-top:5px;
 	font-size:1.2em;
-	font-family: Open Sans;
+	font-family: Open Sans, sans-serif;
 }
 
 .pricetext {
 	font-weight:bold;
 	font-size:1.4em;
-	font-family: Open Sans;
+	font-family: Open Sans, sans-serif;
 }
 
 .img-company-opp {
@@ -353,7 +353,7 @@ small.smallMeetTeam{
     color: white;
     background-color: #ff800f;
     margin: 2px;
-    font-family: Open Sans;
+    font-family: Open Sans, sans-serif;
 }
 
 .btn-dark:hover,
