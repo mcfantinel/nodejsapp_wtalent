@@ -13,6 +13,12 @@ p {
 	max-width: 80px;
 }
 
+.lafabrica-logo {
+	height: 80px;
+	width: 100%;
+	text-align: center;
+}
+
 .li_right > li
 {
     float:right;
@@ -190,6 +196,11 @@ label.small-caps {
 .footer-bottom p.pull-left {
 	padding-top: 6px;
 }
+
+.col-lg-5-custom {
+	width: 20% !important;
+}
+
 /*-----------------------end_footer*/
 
 /*-----------------------accordion*/
